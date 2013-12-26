@@ -27,7 +27,7 @@ NSString * const kHeaderIdent = @"Header";
     stretchyLayout = [[StretchyHeaderCollectionViewLayout alloc] init];
     [stretchyLayout setSectionInset:UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)];
     [stretchyLayout setItemSize:CGSizeMake(300.0, 494.0)];
-    [stretchyLayout setHeaderReferenceSize:CGSizeMake(-1.0, 160.0)];
+    [stretchyLayout setHeaderReferenceSize:CGSizeMake(320.0, 160.0)];
     
     collectionView = [[UICollectionView alloc] initWithFrame:bounds collectionViewLayout:stretchyLayout];
     [collectionView setBackgroundColor:[UIColor clearColor]];
