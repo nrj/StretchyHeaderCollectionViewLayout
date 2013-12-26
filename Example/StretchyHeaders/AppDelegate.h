@@ -1,6 +1,6 @@
 //
 //  AppDelegate.h
-//  StretchyHeaderCollectionViewLayout
+//  StretchyHeaders
 //
 //  Created by Nick Jensen on 12/26/13.
 //  Copyright (c) 2013 Nick Jensen. All rights reserved.

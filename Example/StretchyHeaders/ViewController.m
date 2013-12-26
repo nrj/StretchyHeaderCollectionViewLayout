@@ -1,6 +1,6 @@
 //
 //  ViewController.m
-//  StretchyHeaderCollectionViewLayout
+//  StretchyHeaders
 //
 //  Created by Nick Jensen on 12/26/13.
 //  Copyright (c) 2013 Nick Jensen. All rights reserved.
@@ -19,7 +19,7 @@ NSString * const kHeaderIdent = @"Header";
 - (void)loadView {
     
     [super loadView];
-
+    
     CGRect bounds;
     bounds = [[self view] bounds];
     
@@ -27,10 +27,9 @@ NSString * const kHeaderIdent = @"Header";
     stretchyLayout = [[StretchyHeaderCollectionViewLayout alloc] init];
     [stretchyLayout setSectionInset:UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)];
     [stretchyLayout setItemSize:CGSizeMake(300.0, 494.0)];
-    [stretchyLayout setHeaderReferenceSize:CGSizeMake(bounds.size.width, 180.0)];
+    [stretchyLayout setHeaderReferenceSize:CGSizeMake(-1.0, 160.0)];
     
     collectionView = [[UICollectionView alloc] initWithFrame:bounds collectionViewLayout:stretchyLayout];
-    [collectionView setContentInset:UIEdgeInsetsMake(64.0, 0, 0, 0)];
     [collectionView setBackgroundColor:[UIColor clearColor]];
     [collectionView setAlwaysBounceVertical:YES];
     [collectionView setShowsVerticalScrollIndicator:NO];
@@ -60,41 +59,23 @@ NSString * const kHeaderIdent = @"Header";
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)cv viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-
+    
     if (!header) {
-
+        
         header = [collectionView dequeueReusableSupplementaryViewOfKind:kind
                                                     withReuseIdentifier:kHeaderIdent
                                                            forIndexPath:indexPath];
+        CGRect bounds;
+        bounds = [header bounds];
+        
         UIImageView *imageView;
-        imageView = [[UIImageView alloc] initWithFrame:[header bounds]];
+        imageView = [[UIImageView alloc] initWithFrame:bounds];
         [imageView setImage:[UIImage imageNamed:@"header-background"]];
         [imageView setContentMode:UIViewContentModeScaleAspectFill];
         [imageView setAutoresizingMask:UIViewAutoresizingFlexibleHeight];
         [imageView setClipsToBounds:YES];
         [header addSubview:imageView];
         [imageView release];
-        
-        UILabel *label = [[UILabel alloc] init];
-        [label setAutoresizingMask:UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin];
-        [label setTextColor:[UIColor whiteColor]];
-        [label setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:30.0f]];
-        [label setText:@"Nick Jensen\nnrj.io"];
-        [label setNumberOfLines:2];
-        [label setTextAlignment:NSTextAlignmentCenter];
-        [label setClipsToBounds:NO];
-        [[label layer] setShadowColor:[[UIColor whiteColor] CGColor]];
-        [[label layer] setShadowOffset:CGSizeZero];
-        [[label layer] setShadowOpacity:0.8f];
-        [[label layer] setShadowRadius:5.0f];
-        [header addSubview:label];
-        [label sizeToFit];
-        [label release];
-        
-        CGRect titleRect = [label frame];
-        titleRect.origin.x = 0.5 * (CGRectGetWidth([header bounds]) - titleRect.size.width);
-        titleRect.origin.y = 0.5 * (CGRectGetHeight([header bounds]) - titleRect.size.height);
-        [label setFrame:titleRect];
     }
     
     return header;
@@ -127,22 +108,11 @@ NSString * const kHeaderIdent = @"Header";
     [label release];
     
     return cell;
-    
-    return cell;
 }
 
-- (void)collectionView:(UICollectionView *)cv didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+- (UIStatusBarStyle)preferredStatusBarStyle {
     
-    if (!isScrolled) {
-        
-        [collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionBottom animated:YES];
-    }
-    else {
-        
-        [collectionView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
-    }
-    
-    isScrolled = !isScrolled;
+    return UIStatusBarStyleLightContent;
 }
 
 @end

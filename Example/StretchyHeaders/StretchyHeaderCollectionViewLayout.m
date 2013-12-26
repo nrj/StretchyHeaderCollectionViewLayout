@@ -1,14 +1,14 @@
 //
-//  StretchyHeaderLayout.m
-//  StretchyCollectionViewHeader
+//  StretchyHeaderCollectionViewLayout.m
+//  StretchyHeaders
 //
 //  Created by Nick Jensen on 12/26/13.
 //  Copyright (c) 2013 Nick Jensen. All rights reserved.
 //
 
-#import "StretchyHeaderLayout.h"
+#import "StretchyHeaderCollectionViewLayout.h"
 
-@implementation StretchyHeaderLayout
+@implementation StretchyHeaderCollectionViewLayout
 
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds {
     
@@ -17,7 +17,7 @@
 
 - (UICollectionViewScrollDirection)scrollDirection {
     
-    return UICollectionViewScrollDirectionVertical; // Only support vertical scrolling.
+    return UICollectionViewScrollDirectionVertical;
 }
 
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect {
@@ -28,7 +28,7 @@
     CGFloat minY = -insets.top;
     
     NSArray *attributes = [super layoutAttributesForElementsInRect:rect];
-        
+    
     if (offset.y < minY) {
         
         CGSize  headerSize = [self headerReferenceSize];

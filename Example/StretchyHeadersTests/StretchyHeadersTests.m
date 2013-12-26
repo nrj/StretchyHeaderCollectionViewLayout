@@ -1,6 +1,6 @@
 //
-//  StretchyHeaderCollectionViewLayoutTests.m
-//  StretchyHeaderCollectionViewLayoutTests
+//  StretchyHeadersTests.m
+//  StretchyHeadersTests
 //
 //  Created by Nick Jensen on 12/26/13.
 //  Copyright (c) 2013 Nick Jensen. All rights reserved.
@@ -8,11 +8,11 @@
 
 #import <XCTest/XCTest.h>
 
-@interface StretchyHeaderCollectionViewLayoutTests : XCTestCase
+@interface StretchyHeadersTests : XCTestCase
 
 @end
 
-@implementation StretchyHeaderCollectionViewLayoutTests
+@implementation StretchyHeadersTests
 
 - (void)setUp
 {
